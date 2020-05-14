@@ -1,9 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import CartItem from "./CartItem";
-export default class CartList extends Component {
-  render() {
-    const { value } = this.props;
-    const { cart } = this.props.value;
+export default function CartList({value}) {
+    //const { value } = this.props;
+    const { cart } = value;
     return (
       <div className="container-fluid">
         {cart.map(item => (
@@ -12,4 +11,4 @@ export default class CartList extends Component {
       </div>
     );
   }
-}
+

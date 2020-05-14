@@ -8,6 +8,7 @@ import EmptyCart from "./EmptyCart";
 export default class Store extends Component {
   render() {
     return (
+      
       <section>
         <ProductConsumer>
           {value => {
@@ -18,6 +19,7 @@ export default class Store extends Component {
                   <Title name="your" title="cart" />
                   <CartColumns />
                   <CartList value={value} />
+                  
                   <CartTotals value={value} history={this.props.history} />
                 </React.Fragment>
               );

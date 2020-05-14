@@ -1,17 +1,16 @@
-import React, { Component } from "react";
-export default class CartItem extends Component {
-  render() {
-    const { id, title, img, price, total, count } = this.props.item;
-    const { increment, decrement, removeItem } = this.props.value;
+import React from "react";
+export default function CartItem ({item,value}) {
+    const { id, title, img, price, total, count } = item;
+    const { increment, decrement, removeItem } = value;
 
     return (
       <div className="row my-1 text-capitalize text-center">
         <div className="col-10 mx-auto col-lg-2">
           <img
             src={img}
-            style={{ width: "5rem", heigth: "5rem" }}
+            style={{ width: "30rem", heigth: "30rem" }}
             className="img-fluid"
-            alt=""
+            alt=" "
           />
         </div>
         <div className="col-10 mx-auto col-lg-2 ">
@@ -27,29 +26,27 @@ export default class CartItem extends Component {
             <div>
               <span
                 className="btn btn-black mx-1"
-                onClick={() => {
-                  return decrement(id);
-                }}
-              >
-                -
-              </span>
+                onClick={() =>decrement(id)}
+                
+      
+              >-</span>
               <span className="btn btn-black mx-1">{count}</span>
               <span
                 className="btn btn-black mx-1"
-                onClick={() => {
-                  return increment(id);
-                }}
-              >
-                +
+                onClick={() => increment(id)}
+              
+              >+
               </span>
             </div>
           </div>
         </div>
-        <div className="col-10 mx-auto col-lg-2 ">
-          <div className=" cart-icon" onClick={() => removeItem(id)}>
-            <i className="fas fa-trash" />
-          </div>
+      {/* */}
+
+      <div className="col-10 mx-auto col-lg-2 ">
+        <div className=" cart-icon" onClick={() => removeItem(id)}>
+          <i className="fas fa-trash" />
         </div>
+      </div>
 
         <div className="col-10 mx-auto col-lg-2 ">
           <strong>item total : ${total} </strong>
@@ -57,4 +54,4 @@ export default class CartItem extends Component {
       </div>
     );
   }
-}
+

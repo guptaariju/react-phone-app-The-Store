@@ -53,7 +53,11 @@ class ProductProvider extends Component {
         cart: [...this.state.cart, product],
         detailProduct: { ...product }
       };
-    }, this.addTotals);
+    },
+    ()=>{
+      this.addTotals();
+    }
+    );
   };
   openModal = id => {
     const product = this.getItem(id);
@@ -68,9 +72,8 @@ class ProductProvider extends Component {
   };
   increment = id => {
     let tempCart = [...this.state.cart];
-    const selectedProduct = tempCart.find(item => {
-      return item.id === id;
-    });
+    const selectedProduct = tempCart.find(item =>item.id === id)
+    
     const index = tempCart.indexOf(selectedProduct);
     const product = tempCart[index];
     product.count = product.count + 1;
@@ -79,13 +82,15 @@ class ProductProvider extends Component {
       return {
         cart: [...tempCart]
       };
-    }, this.addTotals);
-  };
+    },()=>{
+      this.addTotals();
+  }
+  );
+};
   decrement = id => {
     let tempCart = [...this.state.cart];
-    const selectedProduct = tempCart.find(item => {
-      return item.id === id;
-    });
+    const selectedProduct = tempCart.find(item =>item.id === id)
+    
     const index = tempCart.indexOf(selectedProduct);
     const product = tempCart[index];
     product.count = product.count - 1;
@@ -95,40 +100,46 @@ class ProductProvider extends Component {
       product.total = product.count * product.price;
       this.setState(() => {
         return { cart: [...tempCart] };
-      }, this.addTotals);
+      },()=>{
+        this.addTotals();
     }
-  };
-  getTotals = () => {
+    );
+  }};
+  //getTotals = () => {
     // const subTotal = this.state.cart
     //   .map(item => item.total)
     //   .reduce((acc, curr) => {
     //     acc = acc + curr;
     //     return acc;
     //   }, 0);
+    //let subTotal = 0;
+    //this.state.cart.map(item => (subTotal += item.total));
+    //const tempTax = subTotal * 0.1;
+    //const tax = parseFloat(tempTax.toFixed(2));
+    //const total = subTotal + tax;
+    //return {
+      //subTotal,
+      //tax,
+      //total
+    //};
+  //};
+  addTotals = () => {
     let subTotal = 0;
     this.state.cart.map(item => (subTotal += item.total));
     const tempTax = subTotal * 0.1;
     const tax = parseFloat(tempTax.toFixed(2));
     const total = subTotal + tax;
-    return {
-      subTotal,
-      tax,
-      total
-    };
-  };
-  addTotals = () => {
-    const totals = this.getTotals();
     this.setState(
       () => {
         return {
-          cartSubTotal: totals.subTotal,
-          cartTax: totals.tax,
-          cartTotal: totals.total
+          cartSubTotal: subTotal,
+          cartTax: tax,
+          cartTotal:total
         };
-      },
-      () => {
-        // console.log(this.state);
       }
+      //() => {
+        // console.log(this.state);
+      //}
     );
   };
   removeItem = id => {
@@ -150,8 +161,12 @@ class ProductProvider extends Component {
         cart: [...tempCart],
         products: [...tempProducts]
       };
-    }, this.addTotals);
-  };
+    },
+    () => {
+      this.addTotals();
+    }
+  );
+};
   clearCart = () => {
     this.setState(
       () => {

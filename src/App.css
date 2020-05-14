@@ -1,19 +1,19 @@
 :root {
-  --mainBlue: #2a2a72;
-  --lightBlue: #009ffd;
+  --mainBlue: #0c0c0f;
+  --lightBlue: #37ace2;
   --mainWhite: #f3f3f3;
   --mainDark: #232528;
-  --mainDark: #000;
+  --mainDark: rgb(15, 13, 13);
   --mainYellow: #ffa400;
 }
 
 body {
-  font-family: "Oswald", sans-serif !important;
+  font-family: 'Oswald', sans-serif !important;
   background: var(--mainWhite) !important;
   color: var(--mainDark) !important;
 }
 .text-title {
-  font-family: "Permanent Marker", cursive;
+  font-family:'Quicksand', sans-serif;
   letter-spacing: 0.3rem;
   text-transform: uppercase;
 }
@@ -30,7 +30,7 @@ body {
   background: transparent;
   text-transform: capitalize;
   font-size: 0.8rem !important;
-  color: var(--mainBlack);
+  color: var(--mainDark);
   border-radius: 0 !important;
   border: 0.1rem solid var(--mainDark) !important;
 }
